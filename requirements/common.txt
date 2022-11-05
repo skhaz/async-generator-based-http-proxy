@@ -1,0 +1,7 @@
+arrow==1.2.3
+httpx==0.23.0
+PyJWT==2.5.0
+redis==4.3.4
+starlette==0.21.0
+typeguard==2.13.3
+uvicorn==0.18.3

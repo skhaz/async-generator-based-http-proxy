@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    environment:
+      - PORT=3000
+      - UPSTREAM_URL=http://httpbin:80
+      - REDIS_DSN=redis://redis:6379/0
+      - SECRET # from .env
+    ports:
+      - 3000:3000
+    depends_on:
+      - httpbin
+      - redis
+  httpbin:
+    image: kennethreitz/httpbin:latest
+  redis:
+    image: redis:7
+    tmpfs:
+      - /data
