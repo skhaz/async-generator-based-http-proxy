@@ -1,5 +1,8 @@
 # Async generator-based HTTP Proxy
 
+### About
+Read more in [nullonerror.org/2022/11/05/asynchronous-and-generator-based-http-proxy-in-python](https://nullonerror.org/2022/11/05/asynchronous-and-generator-based-http-proxy-in-python/)
+
 ### Features
 * Uses multiple asynchronous functions in parallel where is possible
 * Small memory footprint, handles well small and big payloads using generators
