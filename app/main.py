@@ -11,6 +11,7 @@ from starlette.responses import JSONResponse
 from starlette.responses import Response
 from starlette.responses import StreamingResponse
 
+from app.constants import ALLOWED_METHODS
 from app.constants import COUNTER_KEY
 from app.constants import UPTIME_KEY
 from app.crypto import generate_token
@@ -33,7 +34,7 @@ async def shutdown():
     await asyncio.gather(redis.close(), http.aclose())
 
 
-@app.route("/status", methods=["GET"])
+@app.route("/status")
 async def status(_: Request) -> Response:
     counter, uptime = await asyncio.gather(
         redis.get(COUNTER_KEY),
@@ -48,7 +49,7 @@ async def status(_: Request) -> Response:
     )
 
 
-@app.route("/{path}", methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"])
+@app.route("/{path}", methods=ALLOWED_METHODS)
 async def proxy(request: Request) -> Response:
     token = generate_token(user="username", secret=os.environ["SECRET"])
 
