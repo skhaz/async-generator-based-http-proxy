@@ -56,6 +56,7 @@ async def proxy(request: Request) -> Response:
     response, _ = await asyncio.gather(
         http.send(
             http.build_request(
+                content=request.stream(),
                 method=request.method,
                 headers=dict(request.headers.raw) | {b"X-My-Jwt": token},
                 url=request.url.path,
