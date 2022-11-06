@@ -57,8 +57,8 @@ async def proxy(request: Request) -> Response:
         http.send(
             http.build_request(
                 content=request.stream(),
-                method=request.method,
                 headers=dict(request.headers.raw) | {b"X-My-Jwt": token},
+                method=request.method,
                 url=request.url.path,
             ),
             stream=True,
